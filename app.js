@@ -84,7 +84,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/upload/:name', function(req, res) {
-  if (isTooLow(req.query.currentPath)) {
+  if (isTooLow(req.query.currentPath) < 0) {
     res.status(403);
     res.end();
   }
