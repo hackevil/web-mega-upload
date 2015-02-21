@@ -90,12 +90,10 @@ app.get('/upload/:name', function(req, res) {
   });
 });
 
-
-app.listen(3000);
-// var storage = mega({email: '', password: '', keepalive: false}, function() {
-//   app.listen(3000);
-//   console.log("App is online");
-// });
+var storage = mega({email: '', password: '', keepalive: false}, function() {
+  app.listen(3000);
+  console.log("App is online");
+});
 
 var getName = function(path) {
   var pathSplit = path.split('/');
