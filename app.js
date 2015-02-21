@@ -9,22 +9,37 @@ app.use(express.static(__dirname + '/assets'));
 
 var dirPath;
 
+var purgePath = function(path) {
+  var i = path.length - 1;
+
+  while (i >= 0) {
+    if (path[i] != '/') {
+      lastSlash = i;
+      break;
+    }
+    --i;
+  }
+
+  return path.substr(0, lastSlash + 1);
+}
+
 if (process.argv.length < 3) {
   dirPath = '.';
 }
 else {
-  dirPath = process.argv[2];
+  dirPath = purgePath(process.argv[2]);
 }
 
 app.get('/', function(req, res) {
-  var files = fs.readdirSync(dirPath);
+  var currentPath = req.query.path ? req.query.path + '/' : '';
+  var files = fs.readdirSync(dirPath + '/' + currentPath);
   var infos = new Array();
 
   for (var i = 0; i < files.length; ++i) {
-    infos.push({name: files[i], stats: fs.statSync(dirPath + '/' + files[i])});
+    infos.push({name: files[i], stats: fs.statSync(dirPath + '/' + currentPath + files[i])});
   }
 
-  res.render('index', {files: infos});
+  res.render('index', {files: infos, path: currentPath});
 });
 
 app.get('/upload/:name', function(req, res) {

@@ -13,7 +13,10 @@ html(lang="fr")
       - each file in files
         li.list-group-item 
           span(class="fileName")
-            | #{file.name}
+            - if (file.stats.isDirectory())
+              a(href="/?path=#{path}#{file.name}") #{file.name}
+            - else
+              | #{file.name}
             - if (!file.stats.isDirectory())
               button(type="button", class="btn btn-primary btn-sm right-btn uploadBtn", id="#{file.name}") Upload
 
