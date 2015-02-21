@@ -16,21 +16,19 @@ else {
   dirPath = process.argv[2];
 }
 
-console.log(dirPath);
-
 app.get('/', function(req, res) {
   var files = fs.readdirSync(dirPath);
   var infos = new Array();
 
   for (var i = 0; i < files.length; ++i) {
-    infos.push({name: files[i], stats: fs.statSync(files[i])});
+    infos.push({name: files[i], stats: fs.statSync(dirPath + '/' + files[i])});
   }
 
   res.render('index', {files: infos});
 });
 
 app.get('/upload/:name', function(req, res) {
-  upload('./' + req.params.name, function() {
+  upload(dirPath + '/' + req.params.name, function() {
     res.status(200);
     res.end();
   });
