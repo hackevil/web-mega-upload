@@ -34,7 +34,7 @@ app.get('/upload/:name', function(req, res) {
   });
 });
 
-var storage = mega({email: '', password: ''}, function() {
+var storage = mega({email: 'jeromwir@gmail.com', password: 'ibqfGqfY3REw', keepalive: false}, function() {
   app.listen(3000);
   console.log("App is online");
 });
@@ -46,7 +46,7 @@ var getName = function(path) {
 }
 
 var upload = function(path, cb) {
-  fs.createReadStream(path).pipe(storage.upload(getName(path), function() {
+  fs.createReadStream(path).pipe(storage.upload({name: getName(path), size: fs.statSync(path).size}, function() {
     cb();
   }));
 }
