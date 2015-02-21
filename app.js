@@ -34,7 +34,7 @@ app.get('/upload/:name', function(req, res) {
   });
 });
 
-var storage = mega({email: 'jeromwir@gmail.com', password: 'ibqfGqfY3REw', keepalive: false}, function() {
+var storage = mega({email: '', password: '', keepalive: false}, function() {
   app.listen(3000);
   console.log("App is online");
 });
