@@ -86,7 +86,7 @@ app.get('/', function(req, res) {
 app.get('/upload/:name', function(req, res) {
   if (isTooLow(req.query.currentPath) < 0) {
     res.status(403);
-    res.end();
+    return res.end();
   }
   upload(dirPath + '/' + purgePath(req.query.currentPath) + '/' + req.params.name, function() {
     res.status(200);
