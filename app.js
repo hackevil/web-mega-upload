@@ -46,7 +46,11 @@ var getName = function(path) {
 }
 
 var upload = function(path, cb) {
-  fs.createReadStream(path).pipe(storage.upload({name: getName(path), size: fs.statSync(path).size}, function() {
+  var up = storage.upload({name: getName(path), size: fs.statSync(path).size}, function() {
     cb();
-  }));
+  });
+  fs.createReadStream(path).pipe(up);
+  up.on('progress', function(stats) {
+
+  });
 }
