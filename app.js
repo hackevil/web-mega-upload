@@ -7,8 +7,19 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/assets'));
 
+var dirPath;
+
+if (process.argv.length < 3) {
+  dirPath = '.';
+}
+else {
+  dirPath = process.argv[2];
+}
+
+console.log(dirPath);
+
 app.get('/', function(req, res) {
-  var files = fs.readdirSync('.');
+  var files = fs.readdirSync(dirPath);
   var infos = new Array();
 
   for (var i = 0; i < files.length; ++i) {
