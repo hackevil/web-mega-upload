@@ -10,6 +10,9 @@ html(lang="fr")
     .page-header
       h1 Liste des fichiers
     ul.list-group#files-list
+      li.list-group-item
+        span(class="fileName")
+          a(href="/?path=#{getBackPath(path)}") ../
       - each file in files
         li.list-group-item 
           span(class="fileName")
