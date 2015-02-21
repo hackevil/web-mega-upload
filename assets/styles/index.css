@@ -1,0 +1,32 @@
+.list-group-item {
+  padding: 10px;
+}
+
+.right-btn {
+  margin-top: -5px;
+  float: right;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+#files-list {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.page-header {
+  padding-left: 10px;
+}

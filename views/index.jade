@@ -1,0 +1,23 @@
+doctype html
+html(lang="fr")
+  head
+    title Liste des fichiers
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+    style
+      include ../assets/styles/index.css
+
+  body
+    .page-header
+      h1 Liste des fichiers
+    ul.list-group#files-list
+      - each file in files
+        li.list-group-item 
+          span(class="fileName")
+            | #{file.name}
+            - if (!file.stats.isDirectory())
+              button(type="button", class="btn btn-primary btn-sm right-btn uploadBtn", id="#{file.name}") Upload
+
+  footer
+    script(src="//code.jquery.com/jquery-1.11.2.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
+    script(src="/js/index.js")
